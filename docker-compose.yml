@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: dev.Dockerfile
+    image: ts_boilerplate_dev
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: ts_boilerplate_dev
