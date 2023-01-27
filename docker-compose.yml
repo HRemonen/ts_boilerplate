@@ -10,4 +10,5 @@ services:
       - ./:/usr/src/app
     ports:
       - 3000:3000
+      - 8000:8000
     container_name: ts_boilerplate_dev

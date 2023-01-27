@@ -9,7 +9,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/health', boilerRouter)
+app.get('/api/health', (_req, res) => {
+  console.log('health request made')
+  res.send('OK')
+})
+
+app.use('/api/boiler', boilerRouter)
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
   const filename = fileURLToPath(import.meta.url)
