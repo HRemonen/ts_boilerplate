@@ -1,30 +1,25 @@
 import express from 'express'
+import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import boilerRouter from './routes/boiler.js'
 
 const app = express()
 
-app.get('/api/kliks', (_req, res) => {
-  console.log('klik request made')
-  const result = ['klik']
-  for (let i = 1; i < Math.random() * 4; i++) {
-    result.push('klik')
-  }
-  res.send(result.join(' '))
-})
+app.use(cors())
+app.use(express.json())
 
-app.use('/api', (_, res) => res.sendStatus(404))
+app.use('/api/health', boilerRouter)
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
-  const __filename = fileURLToPath(import.meta.url)
-  const __dirname = path.dirname(__filename)
-  const DIST_PATH = path.resolve(__dirname, '../../build')
+  const filename = fileURLToPath(import.meta.url)
+  const dirname = path.dirname(filename)
+  const DIST_PATH = path.resolve(dirname, '../../build')
   const INDEX_PATH = path.resolve(DIST_PATH, 'index.html')
 
   app.use(express.static(DIST_PATH))
   app.get('*', (_req, res) => res.sendFile(INDEX_PATH))
 }
-
 const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
