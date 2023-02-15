@@ -21,17 +21,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "i18next": "^22.4.9",
-    "pg": "^8.8.0",
     "react": "^18.2.0",
-    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.42.1",
-    "react-i18next": "^12.1.4",
-    "react-scripts": "5.0.1",
-    "sequelize": "^6.28.0",
-    "umzug": "^3.2.1",
-    "winston": "^3.8.2"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start:prod": "NODE_ENV=production node --loader ts-node/esm src/server/index.ts",
